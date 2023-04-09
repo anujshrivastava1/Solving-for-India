@@ -1,4 +1,4 @@
-# Disease Prediction using KNN and React JS
+# Disease Prediction using KNN, Flask and React JS
 
 This web application uses a K-Nearest Neighbors (KNN) model to predict the likelihood of a patient having a specific disease based on their symptoms. The model is trained on a dataset of patient symptoms and disease diagnoses.
 
@@ -22,7 +22,7 @@ To get started with the web app:
 
 1. Clone this repository
 2. Install the necessary dependencies: `npm install` and `pip install -r requirements.txt`
-3. Start the Flask server: `python app.py`
+3. Start the Flask server: `python server.py`
 4. Start the React app: `npm start`
 
 ## Usage
