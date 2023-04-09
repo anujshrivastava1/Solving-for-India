@@ -1,0 +1,20 @@
+.container1 {
+  background-color: white;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding: 50px 50px;
+}
+
+.container2 {
+  background-color: #fc8621;
+  color: white;
+  padding: 10px 30px;
+  padding-top: 20px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
