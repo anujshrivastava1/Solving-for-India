@@ -81,6 +81,7 @@ const Search = () => {
 
   return (
     <>
+      
       <div className="searchContainer">
         <input
           type="text"

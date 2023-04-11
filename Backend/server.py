@@ -10,7 +10,7 @@ cors = CORS(server)
 server.config['CORS_HEADERS'] = 'Content-Type'
 
 
-data = pd.read_csv(r"./Converted_Data_model.csv")
+data = pd.read_csv(r"C:\Users\Lenovo\Documents\Solving_for_India_FrontEnd\Solving-for-India\Backend\Converted_Data_model.csv")
 
 
 
@@ -19,8 +19,6 @@ def predict_disease(symptoms):
     
     y_train=data["Disease"]
     X_train = data.iloc[:,1:]
-    y_test = "HIV"
-
     #x_test = [data.iloc[1, 1:]]
     #print(x_test)
 
@@ -32,20 +30,10 @@ def predict_disease(symptoms):
         symptoms_dict[keys] = 0.0
 
     for symptom in symptoms:
-    	if symptom in symptoms_dict:
-        	symptoms_dict[symptom] = 1.0
-        
-    
-    
-   
+        if symptom in symptoms_dict:
+            symptoms_dict[symptom] = 1.0
+
     X_test = [list(symptoms_dict.values())]
-	
-    #print(type(X_test))
-    #test = data.iloc[1, 1:]
-    #test[77] = 0.0
-    #X_test = [test]
-    
-    #X_test = pd.DataFrame(symptoms_dict, index=[0], columns=X_train.columns)
     print(type(X_train), type(y_train))
     X_train = X_train.values.tolist()
     y_train = data["Disease"].tolist()

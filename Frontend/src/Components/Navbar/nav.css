@@ -53,6 +53,7 @@ Pagination
 */
 
 .section {
+  
   width: 90vw;
   margin: 0 auto;
   max-width: var(--max-width);
@@ -63,10 +64,14 @@ Pagination
     width: 95vw;
   }
 }
-
+img {
+  background-color: #000000;
+  padding: 10px;
+}
 nav {
-  background: var(--clr-white);
+  background-color: #000000;
   box-shadow: var(--light-shadow);
+  box-shadow: 0 6px 8px rgb(250, 155, 32);
 }
 .nav-header {
   display: flex;
@@ -105,7 +110,7 @@ nav {
   padding-left: 1.5rem;
 }
 .order {
-  color: black;
+  color: rgb(255, 255, 255);
   padding-top: 40px;
 }
 .normal {
@@ -116,7 +121,7 @@ nav {
   display: block;
   padding: 0.5rem 1rem;
   transition: var(--transition);
-  color: black;
+  color: rgb(255, 255, 255);
 }
 .links-container {
   height: 0;
@@ -124,6 +129,7 @@ nav {
   transition: var(--transition);
 }
 .show-container {
+
   height: 10rem;
 }
 @media screen and (min-width: 800px) {

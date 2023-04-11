@@ -25,16 +25,7 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-center">
         <div className="nav-header">
-          <h3
-            style={{
-              font: "Montserrat",
-              fontSize: "33px",
-              fontWeight: "700",
-              marginTop: "10px",
-            }}
-          >
-            Medisen
-          </h3>
+          <img src="new.png" alt="Medisen" width = "280" height = "75"></img>
           <button className="nav-toggle" onClick={toggleLinks}>
             <FaBars />
           </button>
