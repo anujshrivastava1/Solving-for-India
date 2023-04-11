@@ -10,7 +10,7 @@ cors = CORS(server)
 server.config['CORS_HEADERS'] = 'Content-Type'
 
 
-data = pd.read_csv(r".\Converted_Data_model.csv")
+data = pd.read_csv(r"./Converted_Data_model.csv")
 
 
 def predict_disease(symptoms):
