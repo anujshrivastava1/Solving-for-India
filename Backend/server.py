@@ -10,21 +10,19 @@ cors = CORS(server)
 server.config['CORS_HEADERS'] = 'Content-Type'
 
 
-data = pd.read_csv(r"C:\Users\Lenovo\Documents\Solving_for_India_FrontEnd\Solving-for-India\Backend\Converted_Data_model.csv")
-
+data = pd.read_csv(r".\Converted_Data_model.csv")
 
 
 def predict_disease(symptoms):
-    #print(symptoms_dict)
-    
-    y_train=data["Disease"]
-    X_train = data.iloc[:,1:]
-    #x_test = [data.iloc[1, 1:]]
-    #print(x_test)
+    # print(symptoms_dict)
+
+    y_train = data["Disease"]
+    X_train = data.iloc[:, 1:]
+    # x_test = [data.iloc[1, 1:]]
+    # print(x_test)
 
     symptoms_dict = data.iloc[0:0, 1:]
     symptoms_dict = symptoms_dict.to_dict()
-
 
     for keys in symptoms_dict:
         symptoms_dict[keys] = 0.0
@@ -39,21 +37,21 @@ def predict_disease(symptoms):
     y_train = data["Disease"].tolist()
     print(type(y_train), y_train)
     knn_clf = KNeighborsClassifier(metric='jaccard')
-    knn_clf.fit(X_train,y_train)
+    knn_clf.fit(X_train, y_train)
     distance, prediction = knn_clf.kneighbors(X_test, n_neighbors=10)
-    
+
     prediction = prediction.tolist()
     print(prediction)
     que = []
-    
-    #print(prediction)
+
+    # print(prediction)
     for i in prediction:
         for j in i:
             print(type(j), j)
             que.append(y_train[j])
-   
-    #prediction = knn_clf.predict(X_test)
-    #print(type(que), que)
+
+    # prediction = knn_clf.predict(X_test)
+    # print(type(que), que)
     return que
 
 
@@ -74,24 +72,22 @@ def give_symptoms(disease):
 def index():
     if request.method == 'POST':
         symptoms = request.json
-        #symptoms = request.form["symptoms"]
+        # symptoms = request.form["symptoms"]
         symptoms = symptoms["list"]
-        
+
         print(symptoms)
-        
+
         prediction = predict_disease(symptoms)
         jsonDictList = []
         for predi in prediction:
             symptomsOut = give_symptoms(predi)
-            jsonDict = {"disease":predi, "sym":symptomsOut}
+            jsonDict = {"disease": predi, "sym": symptomsOut}
             jsonDictList.append(jsonDict)
-            
-            
-        
+
         print(jsonDictList)
-        
+
         return jsonify(jsonDictList)
-        
+
     return '''
         <form method="post">
             Symptoms: <input type="text" name="symptoms"><br>
