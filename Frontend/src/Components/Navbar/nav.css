@@ -53,7 +53,6 @@ Pagination
 */
 
 .section {
-  
   width: 90vw;
   margin: 0 auto;
   max-width: var(--max-width);
@@ -71,7 +70,7 @@ img {
 nav {
   background-color: #000000;
   box-shadow: var(--light-shadow);
-  box-shadow: 0 6px 8px rgb(250, 155, 32);
+  box-shadow: 0 6px 20px rgb(248, 137, 39);
 }
 .nav-header {
   display: flex;
@@ -129,7 +128,6 @@ nav {
   transition: var(--transition);
 }
 .show-container {
-
   height: 10rem;
 }
 @media screen and (min-width: 800px) {

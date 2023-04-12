@@ -5,7 +5,6 @@ import { ImCross } from "react-icons/im";
 import "./search.css";
 import axios from "axios";
 import Result from "../Result/Result";
-
 import { sym } from "./data";
 
 const Search = () => {
@@ -44,8 +43,12 @@ const Search = () => {
     const { value } = e.target.dataset;
     const newList = [value, ...trackList];
     console.log(value);
-    setIsFocused(false);
-    setTrackList(newList);
+    const timer = setTimeout(() => {
+      setIsFocused(false);
+      setTrackList(newList);
+    }, 100);
+    return () => clearTimeout(timer);
+    
   };
 
   const removeBtn = (e) => {
@@ -85,6 +88,7 @@ const Search = () => {
       <div className="searchContainer">
         <input
           type="text"
+          style={isFocused?{borderRadius:"35px 35px 0px 0px"}:{}}
           className="searchInput"
           placeholder="Symptoms"
           ref={valueGabber}
@@ -133,16 +137,20 @@ const Search = () => {
               >
                 {item}
               </p>
-
-              <ImCross
-                onClick={removeBtn}
+              <button className="removeBtn" onClick={removeBtn} data-value={item}>
+              {/* <ImCross
+                
                 data-value={item}
                 style={{
                   fontSize: "20px",
-                  marginTop: "25px",
+                  
                   cursor: "pointer",
                 }}
-              />
+              /> */}
+              <span className="XBtn"  onClick={removeBtn} data-value={item}>
+              x
+              </span>
+              </button>
             </div>
           );
         })}

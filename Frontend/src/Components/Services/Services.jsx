@@ -24,7 +24,7 @@ function Services() {
           style={{ font: "Montserrat", fontSize: "53px", fontWeight: "700" }}
         >
           We Analyse Your Health States In Order To{" "}
-          <span style={{ color: "#FC8621" }}>Top Services</span>
+          <span style={{ color: "white" }}>Top Services</span>
         </h2>
       </div>
       <div className="flexbox" style={{ gap: "40px" }}>

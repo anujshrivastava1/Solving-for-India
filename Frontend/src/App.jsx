@@ -14,7 +14,7 @@ function App() {
     <div>
       <Navbar />
       {/* <Info /> */}
-      {/* <WhyUs /> */}
+      {/* { <WhyUs /> } */}
       {/* <Services /> */}
       <Search />
       <Footer />
