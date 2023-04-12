@@ -11,14 +11,18 @@ server.config['CORS_HEADERS'] = 'Content-Type'
 
 
 data = pd.read_csv(r"C:\Users\Lenovo\Documents\Solving_for_India_FrontEnd\Solving-for-India\Backend\Converted_Data_model.csv")
-
+y_train=data["Disease"]
+X_train = data.iloc[:,1:]
+X_train = X_train.values.tolist()
+y_train = data["Disease"].tolist()
+knn_clf = KNeighborsClassifier(metric='jaccard')
+knn_clf.fit(X_train,y_train)
 
 
 def predict_disease(symptoms):
     #print(symptoms_dict)
     
-    y_train=data["Disease"]
-    X_train = data.iloc[:,1:]
+    
     #x_test = [data.iloc[1, 1:]]
     #print(x_test)
 
@@ -34,22 +38,20 @@ def predict_disease(symptoms):
             symptoms_dict[symptom] = 1.0
 
     X_test = [list(symptoms_dict.values())]
-    print(type(X_train), type(y_train))
-    X_train = X_train.values.tolist()
-    y_train = data["Disease"].tolist()
-    print(type(y_train), y_train)
-    knn_clf = KNeighborsClassifier(metric='jaccard')
-    knn_clf.fit(X_train,y_train)
+    #print(type(X_train), type(y_train))
+    
+    #print(type(y_train), y_train)
+    
     distance, prediction = knn_clf.kneighbors(X_test, n_neighbors=10)
     
     prediction = prediction.tolist()
-    print(prediction)
+    #print(prediction)
     que = []
     
     #print(prediction)
     for i in prediction:
         for j in i:
-            print(type(j), j)
+            #print(type(j), j)
             que.append(y_train[j])
    
     #prediction = knn_clf.predict(X_test)
@@ -83,12 +85,13 @@ def index():
         jsonDictList = []
         for predi in prediction:
             symptomsOut = give_symptoms(predi)
+            
             jsonDict = {"disease":predi, "sym":symptomsOut}
             jsonDictList.append(jsonDict)
             
             
         
-        print(jsonDictList)
+        #print(jsonDictList)
         
         return jsonify(jsonDictList)
         
