@@ -1,6 +1,5 @@
 .searchContainer {
   margin-top: 50px;
-  /* background-color: orange; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,10 +14,11 @@
   border: none;
   outline: none;
   border-radius: 35px 35px 35px 35px;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  background:#f9f8f7;
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(121, 120, 120, 0.995);
+  background:white;
+  
 }
+
 
 .searchBtn {
   width: 120px;
@@ -30,10 +30,29 @@
 
 .displayContainer {
   width: 40%;
-  background-color: aqua;
   position: absolute;
   left: 30%;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0px 0px 35px 35px;
 }
+
+.removeBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100% 100% 100% 100%;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  border: none;
+  background-color: white;
+}
+
+.XBtn {
+  font-size: x-large;
+  font-weight: 600;
+  color: #fc8621;
+}
+
+
 
 .showContainer {
   width: 100%;
@@ -43,6 +62,10 @@
   font-size: large;
   display: flex;
   justify-content: flex-start;
+}
+
+.showContainer:nth-last-child(1){
+  border-radius: 0px 0px 35px 35px;
 }
 
 .showContainer:hover {
@@ -62,9 +85,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    margin-top: 20px;
 }
 
 .selectedItems {
@@ -72,7 +93,6 @@
   min-width: 250px;
   justify-content: space-evenly;
   display: flex;
-
   gap: 20px;
   background-color: #fc8621;
   border-radius: 20px 20px 20px 20px;
@@ -80,5 +100,5 @@
 
 .resultContainer {
   padding: 50px;
-  background-color: orange;
+  background-color: rgb(28, 28, 28);
 }

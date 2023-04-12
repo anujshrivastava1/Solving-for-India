@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { points } from "./data";
 import "./whyus.css";
-import Doctor_Patient from "../../Assets/doctor_and_patient.png";
+import Doctor_Patient from "../../Assets/background.png";
 
 function WhyUs() {
   const [isScreenLarge, setIsScreenLarge] = useState(false);
@@ -31,7 +31,7 @@ function WhyUs() {
               fontWeight: "700",
             }}
           >
-            Our Patients Are at the Center{" "}
+            <span style={{color:"white"}}>Our Patients Are at the Center<br></br></span>
             <span style={{ color: "#FC8621" }}>Of Everything We Do</span>
           </h2>
         </div>
@@ -41,7 +41,7 @@ function WhyUs() {
         className="flexbox"
         style={
           isScreenLarge
-            ? { marginTop: "100px", justifyContent: "space-between" }
+            ? { justifyContent: "space-between" }
             : { margin: "50px" }
         }
       >
