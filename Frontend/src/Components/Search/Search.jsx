@@ -81,7 +81,6 @@ const Search = () => {
 
   return (
     <>
-      
       <div className="searchContainer">
         <input
           type="text"
@@ -152,7 +151,13 @@ const Search = () => {
           const { disease, sym } = item;
           return (
             <>
-              <Result key={item} disease={disease} sym={sym} />
+              <Result
+                key={item}
+                disease={disease}
+                sym={sym}
+                updateList={handleClick}
+                trackList={trackList}
+              />
             </>
           );
         })}

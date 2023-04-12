@@ -11,6 +11,8 @@
   padding: 10px 30px;
   padding-top: 20px;
   border-radius: 20px 20px 20px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .flex {
