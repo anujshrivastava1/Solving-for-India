@@ -20,7 +20,17 @@ function WhyUs() {
     <>
       <div
         className="flexbox"
-        style={isScreenLarge ? { marginTop: "100px" } : { margin: "50px" }}
+        style={
+          isScreenLarge
+            ? {
+                marginTop: "100px",
+                justifyContent: "center",
+              }
+            : {
+                margin: "50px",
+                justifyContent: "center",
+              }
+        }
       >
         <div>
           <h2
@@ -31,9 +41,15 @@ function WhyUs() {
               fontWeight: "700",
             }}
           >
-            <span style={{color:"white"}}>Our Patients Are at the Center<br></br></span>
-            <span style={{ color: "#FC8621" }}>Of Everything We Do</span>
+            <span style={{ color: "white" }}>Your Health is </span>{" "}
+            <span style={{ color: "#FC8621" }}> our priority</span>
           </h2>
+          <p style={{ color: "white" }}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
+            quibusdam explicabo quas architecto eos aliquam ducimus impedit non
+            nisi quam neque, amet error magnam animi exercitationem blanditiis
+            repudiandae, sed adipisci?
+          </p>
         </div>
       </div>
 

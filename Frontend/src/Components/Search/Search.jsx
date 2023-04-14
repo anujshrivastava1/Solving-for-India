@@ -8,7 +8,7 @@ import Result from "../Result/Result";
 import { sym } from "./data";
 
 const Search = () => {
-  const valueGabber = useRef("");
+  // const valueGabber = useRef("");
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
   const [trackList, setTrackList] = useState([]);
@@ -26,7 +26,7 @@ const Search = () => {
       const postData = { list: trackList };
       try {
         const res = await axios.post("http://127.0.0.1:5000/", postData);
-        console.log(res["data"]);
+        // console.log(res["data"]);
         setPredictedList(res["data"]);
       } catch (error) {
         console.log(error);
@@ -41,20 +41,31 @@ const Search = () => {
 
   const handleClick = (e) => {
     const { value } = e.target.dataset;
-    const newList = [value, ...trackList];
-    console.log(value);
-    const timer = setTimeout(() => {
-      setIsFocused(false);
+    const newList = [...trackList];
+
+    if (newList.includes(value)) {
+      const index = newList.indexOf(value);
+      if (index > -1) {
+        // only splice array when item is found
+        newList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+
       setTrackList(newList);
-    }, 100);
-    return () => clearTimeout(timer);
-    
+    } else {
+      const newList = [value, ...trackList];
+
+      const timer = setTimeout(() => {
+        setIsFocused(false);
+        setTrackList(newList);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
   };
 
   const removeBtn = (e) => {
     const { value } = e.target.dataset;
     const newList = [...trackList];
-    console.log(value);
+
     const index = newList.indexOf(value);
     if (index > -1) {
       // only splice array when item is found
@@ -87,10 +98,10 @@ const Search = () => {
       <div className="searchContainer">
         <input
           type="text"
-          style={isFocused?{borderRadius:"35px 35px 0px 0px"}:{}}
+          style={isFocused ? { borderRadius: "35px 35px 0px 0px" } : {}}
           className="searchInput"
           placeholder="Symptoms"
-          ref={valueGabber}
+          // ref={valueGabber}
           onChange={(e) => handleChange(e)}
           onFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
@@ -111,7 +122,6 @@ const Search = () => {
               <button
                 className="showContainer"
                 style={{ backgroundColor: "transparent" }}
-                key={item}
                 data-value={item}
                 onClick={handleClick}
               >
@@ -123,9 +133,9 @@ const Search = () => {
       </div>
 
       <div className="selectedContainer">
-        {trackList.map((item) => {
+        {trackList.map((item, index) => {
           return (
-            <div className="selectedItems" key={item}>
+            <div className="selectedItems" key={index}>
               <p
                 style={{
                   color: "white",
@@ -136,8 +146,12 @@ const Search = () => {
               >
                 {item}
               </p>
-              <button className="removeBtn" onClick={removeBtn} data-value={item}>
-              {/* <ImCross
+              <button
+                className="removeBtn"
+                onClick={removeBtn}
+                data-value={item}
+              >
+                {/* <ImCross
                 
                 data-value={item}
                 style={{
@@ -146,21 +160,21 @@ const Search = () => {
                   cursor: "pointer",
                 }}
               /> */}
-              <span className="XBtn"  onClick={removeBtn} data-value={item}>
-              x
-              </span>
+                <span className="XBtn" onClick={removeBtn} data-value={item}>
+                  x
+                </span>
               </button>
             </div>
           );
         })}
       </div>
       <div className="resultContainer">
-        {predictedList.map((item) => {
+        {predictedList.map((item, index) => {
           const { disease, sym } = item;
           return (
             <>
               <Result
-                key={item}
+                key={index}
                 disease={disease}
                 sym={sym}
                 updateList={handleClick}

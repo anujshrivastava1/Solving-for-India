@@ -15,10 +15,8 @@
   outline: none;
   border-radius: 35px 35px 35px 35px;
   box-shadow: 0 10px 20px rgba(121, 120, 120, 0.995);
-  background:white;
-  
+  background: white;
 }
-
 
 .searchBtn {
   width: 120px;
@@ -44,6 +42,7 @@
   margin-top: 20px;
   border: none;
   background-color: white;
+  cursor: pointer;
 }
 
 .XBtn {
@@ -51,8 +50,6 @@
   font-weight: 600;
   color: #fc8621;
 }
-
-
 
 .showContainer {
   width: 100%;
@@ -64,7 +61,7 @@
   justify-content: flex-start;
 }
 
-.showContainer:nth-last-child(1){
+.showContainer:nth-last-child(1) {
   border-radius: 0px 0px 35px 35px;
 }
 
@@ -80,12 +77,12 @@
 }
 
 .selectedContainer {
-    width: 100%;
-    padding: 50px 50px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
+  width: 100%;
+  padding: 50px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
 }
 
 .selectedItems {

@@ -20,14 +20,16 @@ const Result = ({ disease, sym, updateList, trackList }) => {
         <h3>{disease}</h3>
         <p>Which symptoms match the {disease}?</p>
         <div className="flex">
-          {sym.map((item) => {
+          {sym.map((item, index) => {
+            const isInList = trackList.includes(item);
             return (
               <button
-                className="container2"
+                className={isInList ? "selectContainer2" : "container2"}
                 onClick={updateList}
                 data-value={item}
+                key={index}
               >
-                <h4>{item}</h4>
+                {item}
               </button>
             );
           })}
