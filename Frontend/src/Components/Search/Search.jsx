@@ -25,7 +25,7 @@ const Search = () => {
     const fetchApi = async () => {
       const postData = { list: trackList };
       try {
-        const res = await axios.post("http://127.0.0.1:5000/", postData);
+        const res = await axios.post("http://34.162.71.219/", postData);
         // console.log(res["data"]);
         setPredictedList(res["data"]);
       } catch (error) {
