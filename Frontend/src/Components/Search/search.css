@@ -1,5 +1,5 @@
 .searchContainer {
-  margin-top: 50px;
+  
   width: 100%;
   display: flex;
   justify-content: center;
@@ -18,13 +18,7 @@
   background: white;
 }
 
-.searchBtn {
-  width: 120px;
-  height: 50px;
 
-  border-radius: 5px 5px 5px 5px;
-  background-color: blue;
-}
 
 .displayContainer {
   width: 40%;
@@ -39,7 +33,7 @@
   height: 30px;
   border-radius: 100% 100% 100% 100%;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
+  
   border: none;
   background-color: white;
   cursor: pointer;
@@ -90,6 +84,7 @@
   min-width: 250px;
   justify-content: space-evenly;
   display: flex;
+  padding-top: 20px;
   gap: 20px;
   background-color: #fc8621;
   border-radius: 20px 20px 20px 20px;
@@ -98,4 +93,103 @@
 .resultContainer {
   padding: 50px;
   background-color: rgb(28, 28, 28);
+}
+
+
+
+@media screen and (max-width: 800px) {
+  .searchContainer {
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .searchInput {
+    width: 60%;
+    height: 60px;
+    padding: 20px;
+    font-size: x-large;
+    border: none;
+    outline: none;
+    border-radius: 35px 35px 35px 35px;
+    box-shadow: 0 10px 20px rgba(121, 120, 120, 0.995);
+    background: white;
+  }
+
+
+  
+  .displayContainer {
+  width: 60%;
+  position: absolute;
+  left: 20%;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0px 0px 35px 35px;
+  }
+
+  .removeBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100% 100% 100% 100%;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  }
+  .showContainer {
+    width: 100%;
+    background-color: white;
+    padding: 10px 10px;
+    border: none;
+    font-size: large;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .showContainer:nth-last-child(1) {
+    border-radius: 0px 0px 35px 35px;
+  }
+  
+  .showContainer:hover {
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(255, 209, 123);
+    padding: 10px 10px;
+    border: none;
+    font-size: large;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .selectedContainer {
+    width: 100%;
+    padding: 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .selectedItems {
+    max-width: 400px;
+    min-width: 30px;
+    max-height: 500px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    justify-content: space-evenly;
+    display: flex;
+    gap: 20px;
+    background-color: #fc8621;
+    border-radius: 20px 20px 20px 20px;
+  }
+  
+  .resultContainer {
+    padding: 0px;
+    background-color: rgb(28, 28, 28);
+  }
+
+
 }

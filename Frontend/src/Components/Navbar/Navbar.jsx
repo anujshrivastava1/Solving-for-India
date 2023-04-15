@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { links } from "./data";
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import "./nav.css";
 
 const Navbar = () => {
@@ -37,13 +39,17 @@ const Navbar = () => {
               const { id, url, text } = link;
 
               return (
+                
+                <>
                 <a
-                  to={"#" + url}
+                  href={url}
+                  target={url=="https://docs.google.com/document/d/15Ne33VQ2wGcJzbnVTleqgkKNGwd83OErpZ1Yk0mvG8s/edit"?"_blank":""}
                   key={id}
-                  className={text == "Consult Now" ? "order" : "normal"}
+                  className={text == "Contact Us" ? "order" : "normal"}
                 >
                   <li key={id}>{text}</li>
                 </a>
+                </>
               );
             })}
           </ul>

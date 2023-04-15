@@ -17,7 +17,7 @@ const Result = ({ disease, sym, updateList, trackList }) => {
   return (
     <>
       <div className="container1">
-        <h3>{disease}</h3>
+        <h2>{disease}</h2>
         <p>Which symptoms match the {disease}?</p>
         <div className="flex">
           {sym.map((item, index) => {

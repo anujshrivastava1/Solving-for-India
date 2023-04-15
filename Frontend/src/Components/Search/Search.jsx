@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
-import { ImCross } from "react-icons/im";
 import "./search.css";
 import axios from "axios";
 import Result from "../Result/Result";
@@ -9,6 +7,19 @@ import { sym } from "./data";
 
 const Search = () => {
   // const valueGabber = useRef("");
+  const [isScreenLarge, setIsScreenLarge] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      setIsScreenLarge(window.innerWidth > 1083);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // call once initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
   const [trackList, setTrackList] = useState([]);
@@ -25,9 +36,11 @@ const Search = () => {
     const fetchApi = async () => {
       const postData = { list: trackList };
       try {
-        const res = await axios.post("http://34.162.71.219/", postData);
+        const res = await axios.post("http://34.131.80.63/", postData);
         // console.log(res["data"]);
-        setPredictedList(res["data"]);
+        const sliceData = res["data"].slice(0, 5)
+
+        setPredictedList(sliceData);
       } catch (error) {
         console.log(error);
       }
@@ -95,6 +108,12 @@ const Search = () => {
 
   return (
     <>
+      <Heading />
+      <center>
+        <p style={{ color: "white", fontSize:`${isScreenLarge?27:15}px`, fontWeight:"600" }}>
+          What <span style={{font: "Montserrat",color: "#FC8621"}}>symptoms</span> are you experiencing?
+        </p>
+      </center>
       <div className="searchContainer">
         <input
           type="text"
@@ -141,7 +160,7 @@ const Search = () => {
                   color: "white",
                   fontSize: "20px",
                   fontWeight: "bold",
-                  paddingTop: "20px",
+                  
                 }}
               >
                 {item}
@@ -151,15 +170,7 @@ const Search = () => {
                 onClick={removeBtn}
                 data-value={item}
               >
-                {/* <ImCross
                 
-                data-value={item}
-                style={{
-                  fontSize: "20px",
-                  
-                  cursor: "pointer",
-                }}
-              /> */}
                 <span className="XBtn" onClick={removeBtn} data-value={item}>
                   x
                 </span>
@@ -187,5 +198,55 @@ const Search = () => {
     </>
   );
 };
+
+
+const Heading = () =>{
+  const [isScreenLarge, setIsScreenLarge] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      setIsScreenLarge(window.innerWidth > 1083);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // call once initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return(
+    <div
+        className="flexbox"
+        style={
+          isScreenLarge
+            ? {
+                marginTop: "100px",
+                justifyContent: "center",
+              }
+            : {
+                margin: "50px",
+                justifyContent: "center",
+              }
+        }
+      >
+        <center>
+          <h2
+            style={{
+              color: "black",
+              font: "Montserrat",
+              fontSize:`${isScreenLarge?53:37}px`,
+              
+              fontWeight: "700",
+            }}
+          >
+            <span style={{ color: "white" }}>Your Health is </span>{" "}
+            <span style={{ color: "#FC8621" }}> our priority</span>
+          </h2>
+          
+          
+          
+        
+        </center>
+      </div>
+  );
+}
 
 export default Search;

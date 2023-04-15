@@ -6,24 +6,16 @@ export const links = [
     url: "/",
     text: "home",
   },
-  {
-    id: 2,
-    url: "/services",
-    text: "Our Services",
-  },
+  
   {
     id: 3,
-    url: "/about",
+    url: "https://docs.google.com/document/d/15Ne33VQ2wGcJzbnVTleqgkKNGwd83OErpZ1Yk0mvG8s/edit",
     text: "about Us",
   },
   {
     id: 4,
-    url: "/contact",
-    text: "contact",
+    url: "/#contact",
+    text: "Contact Us",
   },
-  {
-    id: 5,
-    url: "/order",
-    text: "Consult Now",
-  },
+  
 ];
