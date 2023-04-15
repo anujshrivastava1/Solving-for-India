@@ -4,6 +4,7 @@ import { links } from "./data";
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import "./nav.css";
+import logo from "../../Assets/new.png";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-center">
         <div className="nav-header">
-          <img src="new.png" alt="Medisen" width = "280" height = "75"></img>
+          <img src={logo} alt="Medisen" width = "280" height = "75"></img>
           <button className="nav-toggle" onClick={toggleLinks}>
             <FaBars />
           </button>
