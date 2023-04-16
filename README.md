@@ -38,9 +38,17 @@ The use of machine learning algorithms for disease prediction based on symptoms 
 # Disclaimer
 If you have symptoms of a very serious disease we highly encourage you to physically visit a health institution. In case the website suggests a medicine that requires a prescription from a professional institution, please make sure you visit your doctor and get one.
 
+# Contributors
+Rohit Patil - Frontend, Google Cloud Deployment
+Nishant Thakre - Backend, ML model
+Anuj Shrivastava - Dataset, Documentation, ML model
+Bhaskar Pandey - UI/UX Design
 
 # License 
 This project is released under the MIT License.
 
-# Site
+# Links
 Visit our project using the url : http://34.131.193.196/
+Documentation : https://docs.google.com/document/d/15Ne33VQ2wGcJzbnVTleqgkKNGwd83OErpZ1Yk0mvG8s/edit
+
+# Open for Feedback and Suggestions
