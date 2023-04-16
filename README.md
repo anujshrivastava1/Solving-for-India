@@ -41,3 +41,6 @@ If you have symptoms of a very serious disease we highly encourage you to physic
 
 # License 
 This project is released under the MIT License.
+
+# Site
+Visit our project using the url : http://34.131.193.196/
