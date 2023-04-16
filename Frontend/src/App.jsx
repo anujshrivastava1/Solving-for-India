@@ -9,19 +9,15 @@ import Services from "./Components/Services/Services";
 import Result from "./Components/Result/Result";
 import Search from "./Components/Search/Search";
 
-import { Router } from 'react-router-dom';
-
 function App() {
   return (
     <div>
-      
       <Navbar />
       {/* <Info /> */}
       {/* <WhyUs /> */}
       {/* <Services /> */}
       <Search />
       <Footer />
-      
     </div>
   );
 }

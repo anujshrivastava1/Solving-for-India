@@ -19,7 +19,6 @@ const Search = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
   const [trackList, setTrackList] = useState([]);
@@ -38,7 +37,7 @@ const Search = () => {
       try {
         const res = await axios.post("http://34.131.80.63/", postData);
         // console.log(res["data"]);
-        const sliceData = res["data"].slice(0, 5)
+        const sliceData = res["data"].slice(0, 5);
 
         setPredictedList(sliceData);
       } catch (error) {
@@ -87,14 +86,16 @@ const Search = () => {
     setTrackList(newList);
   };
 
-  const handleBlur = () => {
-    if (isFocused) {
-      const timer = setTimeout(() => {
+  const handleBlur = () => {};
+
+  useEffect(() => {
+    const handleBlur = () => {
+      if (isFocused) {
         setIsFocused(false);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  };
+      }
+    };
+    handleBlur();
+  }, [trackList]);
 
   const toFilter = (item) => {
     try {
@@ -110,8 +111,16 @@ const Search = () => {
     <>
       <Heading />
       <center>
-        <p style={{ color: "white", fontSize:`${isScreenLarge?27:15}px`, fontWeight:"600" }}>
-          What <span style={{font: "Montserrat",color: "#FC8621"}}>symptoms</span> are you experiencing?
+        <p
+          style={{
+            color: "white",
+            fontSize: `${isScreenLarge ? 27 : 15}px`,
+            fontWeight: "600",
+          }}
+        >
+          What{" "}
+          <span style={{ font: "Montserrat", color: "#FC8621" }}>symptoms</span>{" "}
+          are you experiencing?
         </p>
       </center>
       <div className="searchContainer">
@@ -123,7 +132,7 @@ const Search = () => {
           // ref={valueGabber}
           onChange={(e) => handleChange(e)}
           onFocus={() => setIsFocused(true)}
-          onBlur={handleBlur}
+          onBlur={handleClick}
         />
         {/* <FaSearch
           style={{ fontSize: "30px", marginTop: "10px", marginLeft: "-10px" }}
@@ -153,30 +162,32 @@ const Search = () => {
 
       <div className="selectedContainer">
         {trackList.map((item, index) => {
-          return (
-            <div className="selectedItems" key={index}>
-              <p
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  
-                }}
-              >
-                {item}
-              </p>
-              <button
-                className="removeBtn"
-                onClick={removeBtn}
-                data-value={item}
-              >
-                
-                <span className="XBtn" onClick={removeBtn} data-value={item}>
-                  x
-                </span>
-              </button>
-            </div>
-          );
+          if (item == undefined) {
+            return <></>;
+          } else {
+            return (
+              <div className="selectedItems" key={index}>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item}
+                </p>
+                <button
+                  className="removeBtn"
+                  onClick={removeBtn}
+                  data-value={item}
+                >
+                  <span className="XBtn" onClick={removeBtn} data-value={item}>
+                    x
+                  </span>
+                </button>
+              </div>
+            );
+          }
         })}
       </div>
       <div className="resultContainer">
@@ -199,8 +210,7 @@ const Search = () => {
   );
 };
 
-
-const Heading = () =>{
+const Heading = () => {
   const [isScreenLarge, setIsScreenLarge] = useState(false);
   useEffect(() => {
     function handleResize() {
@@ -212,41 +222,37 @@ const Heading = () =>{
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  return(
+  return (
     <div
-        className="flexbox"
-        style={
-          isScreenLarge
-            ? {
-                marginTop: "100px",
-                justifyContent: "center",
-              }
-            : {
-                margin: "50px",
-                justifyContent: "center",
-              }
-        }
-      >
-        <center>
-          <h2
-            style={{
-              color: "black",
-              font: "Montserrat",
-              fontSize:`${isScreenLarge?53:37}px`,
-              
-              fontWeight: "700",
-            }}
-          >
-            <span style={{ color: "white" }}>Your Health is </span>{" "}
-            <span style={{ color: "#FC8621" }}> our priority</span>
-          </h2>
-          
-          
-          
-        
-        </center>
-      </div>
+      className="flexbox"
+      style={
+        isScreenLarge
+          ? {
+              marginTop: "100px",
+              justifyContent: "center",
+            }
+          : {
+              margin: "50px",
+              justifyContent: "center",
+            }
+      }
+    >
+      <center>
+        <h2
+          style={{
+            color: "black",
+            font: "Montserrat",
+            fontSize: `${isScreenLarge ? 53 : 37}px`,
+
+            fontWeight: "700",
+          }}
+        >
+          <span style={{ color: "white" }}>Your Health is </span>{" "}
+          <span style={{ color: "#FC8621" }}> our priority</span>
+        </h2>
+      </center>
+    </div>
   );
-}
+};
 
 export default Search;

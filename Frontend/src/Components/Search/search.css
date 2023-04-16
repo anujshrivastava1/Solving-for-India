@@ -1,5 +1,4 @@
 .searchContainer {
-  
   width: 100%;
   display: flex;
   justify-content: center;
@@ -18,14 +17,13 @@
   background: white;
 }
 
-
-
 .displayContainer {
   width: 40%;
   position: absolute;
   left: 30%;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
   border-radius: 0px 0px 35px 35px;
+  overflow: "hidden";
 }
 
 .removeBtn {
@@ -33,7 +31,7 @@
   height: 30px;
   border-radius: 100% 100% 100% 100%;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  
+
   border: none;
   background-color: white;
   cursor: pointer;
@@ -95,17 +93,14 @@
   background-color: rgb(28, 28, 28);
 }
 
-
-
 @media screen and (max-width: 800px) {
   .searchContainer {
-    
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 30px;
   }
-  
+
   .searchInput {
     width: 60%;
     height: 60px;
@@ -118,25 +113,23 @@
     background: white;
   }
 
-
-  
   .displayContainer {
-  width: 60%;
-  position: absolute;
-  left: 20%;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 0px 0px 35px 35px;
+    width: 60%;
+    position: absolute;
+    left: 20%;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 35px 35px;
   }
 
   .removeBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 100% 100% 100% 100%;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-  
-  border: none;
-  background-color: white;
-  cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 100% 100% 100% 100%;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+
+    border: none;
+    background-color: white;
+    cursor: pointer;
   }
   .showContainer {
     width: 100%;
@@ -147,11 +140,11 @@
     display: flex;
     justify-content: flex-start;
   }
-  
+
   .showContainer:nth-last-child(1) {
     border-radius: 0px 0px 35px 35px;
   }
-  
+
   .showContainer:hover {
     width: 100%;
     cursor: pointer;
@@ -162,7 +155,7 @@
     display: flex;
     justify-content: flex-start;
   }
-  
+
   .selectedContainer {
     width: 100%;
     padding: 50px 50px;
@@ -171,25 +164,23 @@
     gap: 30px;
     margin-top: 20px;
   }
-  
+
   .selectedItems {
     max-width: 400px;
     min-width: 30px;
     max-height: 500px;
     padding-left: 10px;
     padding-right: 10px;
-    
+
     justify-content: space-evenly;
     display: flex;
     gap: 20px;
     background-color: #fc8621;
     border-radius: 20px 20px 20px 20px;
   }
-  
+
   .resultContainer {
     padding: 0px;
     background-color: rgb(28, 28, 28);
   }
-
-
 }
