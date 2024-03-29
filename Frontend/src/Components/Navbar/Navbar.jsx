@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { links } from "./data";
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import "./nav.css";
+import logo from "../../Assets/new.png";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -25,16 +28,7 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-center">
         <div className="nav-header">
-          <h3
-            style={{
-              font: "Montserrat",
-              fontSize: "33px",
-              fontWeight: "700",
-              marginTop: "10px",
-            }}
-          >
-            Medisen
-          </h3>
+          <img src={logo} alt="Medisen" width = "280" height = "75"></img>
           <button className="nav-toggle" onClick={toggleLinks}>
             <FaBars />
           </button>
@@ -46,13 +40,17 @@ const Navbar = () => {
               const { id, url, text } = link;
 
               return (
+                
+                <>
                 <a
-                  to={"#" + url}
+                  href={url}
+                  target={url=="https://docs.google.com/document/d/15Ne33VQ2wGcJzbnVTleqgkKNGwd83OErpZ1Yk0mvG8s/edit"?"_blank":""}
                   key={id}
-                  className={text == "Consult Now" ? "order" : "normal"}
+                  className={text == "Contact Us" ? "order" : "normal"}
                 >
                   <li key={id}>{text}</li>
                 </a>
+                </>
               );
             })}
           </ul>

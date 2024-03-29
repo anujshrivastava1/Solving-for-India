@@ -1,15 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
-import { ImCross } from "react-icons/im";
 import "./search.css";
 import axios from "axios";
 import Result from "../Result/Result";
-
 import { sym } from "./data";
 
 const Search = () => {
-  const valueGabber = useRef("");
+  // const valueGabber = useRef("");
+  const [isScreenLarge, setIsScreenLarge] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      setIsScreenLarge(window.innerWidth > 1083);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // call once initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
   const [trackList, setTrackList] = useState([]);
@@ -26,9 +35,11 @@ const Search = () => {
     const fetchApi = async () => {
       const postData = { list: trackList };
       try {
-        const res = await axios.post("http://127.0.0.1:5000/", postData);
-        console.log(res["data"]);
-        setPredictedList(res["data"]);
+        const res = await axios.post("http://34.131.80.63/", postData);
+        // console.log(res["data"]);
+        const sliceData = res["data"].slice(0, 5);
+
+        setPredictedList(sliceData);
       } catch (error) {
         console.log(error);
       }
@@ -42,16 +53,31 @@ const Search = () => {
 
   const handleClick = (e) => {
     const { value } = e.target.dataset;
-    const newList = [value, ...trackList];
-    console.log(value);
-    setIsFocused(false);
-    setTrackList(newList);
+    const newList = [...trackList];
+
+    if (newList.includes(value)) {
+      const index = newList.indexOf(value);
+      if (index > -1) {
+        // only splice array when item is found
+        newList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+
+      setTrackList(newList);
+    } else {
+      const newList = [value, ...trackList];
+
+      const timer = setTimeout(() => {
+        setIsFocused(false);
+        setTrackList(newList);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
   };
 
   const removeBtn = (e) => {
     const { value } = e.target.dataset;
     const newList = [...trackList];
-    console.log(value);
+
     const index = newList.indexOf(value);
     if (index > -1) {
       // only splice array when item is found
@@ -60,14 +86,16 @@ const Search = () => {
     setTrackList(newList);
   };
 
-  const handleBlur = () => {
-    if (isFocused) {
-      const timer = setTimeout(() => {
+  const handleBlur = () => {};
+
+  useEffect(() => {
+    const handleBlur = () => {
+      if (isFocused) {
         setIsFocused(false);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  };
+      }
+    };
+    handleBlur();
+  }, [trackList]);
 
   const toFilter = (item) => {
     try {
@@ -81,15 +109,30 @@ const Search = () => {
 
   return (
     <>
+      <Heading />
+      <center>
+        <p
+          style={{
+            color: "white",
+            fontSize: `${isScreenLarge ? 27 : 15}px`,
+            fontWeight: "600",
+          }}
+        >
+          What{" "}
+          <span style={{ font: "Montserrat", color: "#FC8621" }}>symptoms</span>{" "}
+          are you experiencing?
+        </p>
+      </center>
       <div className="searchContainer">
         <input
           type="text"
+          style={isFocused ? { borderRadius: "35px 35px 0px 0px" } : {}}
           className="searchInput"
           placeholder="Symptoms"
-          ref={valueGabber}
+          // ref={valueGabber}
           onChange={(e) => handleChange(e)}
           onFocus={() => setIsFocused(true)}
-          onBlur={handleBlur}
+          onBlur={handleClick}
         />
         {/* <FaSearch
           style={{ fontSize: "30px", marginTop: "10px", marginLeft: "-10px" }}
@@ -107,7 +150,6 @@ const Search = () => {
               <button
                 className="showContainer"
                 style={{ backgroundColor: "transparent" }}
-                key={item}
                 data-value={item}
                 onClick={handleClick}
               >
@@ -119,44 +161,97 @@ const Search = () => {
       </div>
 
       <div className="selectedContainer">
-        {trackList.map((item) => {
-          return (
-            <div className="selectedItems" key={item}>
-              <p
-                style={{
-                  color: "white",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  paddingTop: "20px",
-                }}
-              >
-                {item}
-              </p>
-
-              <ImCross
-                onClick={removeBtn}
-                data-value={item}
-                style={{
-                  fontSize: "20px",
-                  marginTop: "25px",
-                  cursor: "pointer",
-                }}
-              />
-            </div>
-          );
+        {trackList.map((item, index) => {
+          if (item == undefined) {
+            return <></>;
+          } else {
+            return (
+              <div className="selectedItems" key={index}>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item}
+                </p>
+                <button
+                  className="removeBtn"
+                  onClick={removeBtn}
+                  data-value={item}
+                >
+                  <span className="XBtn" onClick={removeBtn} data-value={item}>
+                    x
+                  </span>
+                </button>
+              </div>
+            );
+          }
         })}
       </div>
       <div className="resultContainer">
-        {predictedList.map((item) => {
+        {predictedList.map((item, index) => {
           const { disease, sym } = item;
           return (
             <>
-              <Result key={item} disease={disease} sym={sym} />
+              <Result
+                key={index}
+                disease={disease}
+                sym={sym}
+                updateList={handleClick}
+                trackList={trackList}
+              />
             </>
           );
         })}
       </div>
     </>
+  );
+};
+
+const Heading = () => {
+  const [isScreenLarge, setIsScreenLarge] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      setIsScreenLarge(window.innerWidth > 1083);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // call once initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return (
+    <div
+      className="flexbox"
+      style={
+        isScreenLarge
+          ? {
+              marginTop: "100px",
+              justifyContent: "center",
+            }
+          : {
+              margin: "50px",
+              justifyContent: "center",
+            }
+      }
+    >
+      <center>
+        <h2
+          style={{
+            color: "black",
+            font: "Montserrat",
+            fontSize: `${isScreenLarge ? 53 : 37}px`,
+
+            fontWeight: "700",
+          }}
+        >
+          <span style={{ color: "white" }}>Your Health is </span>{" "}
+          <span style={{ color: "#FC8621" }}> our priority</span>
+        </h2>
+      </center>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./result.css";
 
-const Result = ({ disease, sym }) => {
+const Result = ({ disease, sym, updateList, trackList }) => {
   const [isScreenLarge, setIsScreenLarge] = useState(false);
   useEffect(() => {
     function handleResize() {
@@ -17,14 +17,20 @@ const Result = ({ disease, sym }) => {
   return (
     <>
       <div className="container1">
-        <h3>{disease}</h3>
+        <h2>{disease}</h2>
         <p>Which symptoms match the {disease}?</p>
         <div className="flex">
-          {sym.map((item) => {
+          {sym.map((item, index) => {
+            const isInList = trackList.includes(item);
             return (
-              <div className="container2">
-                <h4>{item}</h4>
-              </div>
+              <button
+                className={isInList ? "selectContainer2" : "container2"}
+                onClick={updateList}
+                data-value={item}
+                key={index}
+              >
+                {item}
+              </button>
             );
           })}
         </div>

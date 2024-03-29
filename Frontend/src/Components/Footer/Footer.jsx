@@ -1,4 +1,5 @@
 import "../../App.css";
+import "./footer.css"
 import * as React from "react";
 import { social } from "./data";
 
@@ -6,11 +7,12 @@ const Footer = () => {
   return (
     <>
       <div
+         id="contact"
         style={{
           width: "100%",
           height: "28vh",
-          background: "#F99D00",
-          borderRadius: " 60px 0px 0px 0px",
+          background: "black",
+          boxShadow: "0 -10px 30px rgb(248, 137, 39)",
           marginTop: "20px",
         }}
       >
@@ -61,8 +63,8 @@ const Footer = () => {
               return (
                 <>
                   <div key={id}>
-                    <a href={url}>
-                      <p style={{ color: "white", fontSize: "20px" }}>{icon}</p>
+                    <a href={url} target="_blank">
+                      <p style={{ color: "#fc8621", fontSize: "20px" }} >{icon}</p>
                     </a>
                   </div>
                 </>
